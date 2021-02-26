@@ -72,77 +72,85 @@ def on_mqtt_disconnect(client, userdata, rc):
 def on_mqtt_message(client, userdata, message):
   print("Received Topic:",message.topic,"Message",message.payload)
   if message.topic=="homeassistant/light/enocean/light_one/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x12] #Teached in sender ID for this light one
     if message.payload.decode('UTF-8')=='ON':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x12]))#Teached in sender ID for this light
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='OFF':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x12]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/light/enocean/light_two/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x16] #Teached in sender ID for this light two
     if message.payload.decode('UTF-8')=='ON':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x16]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='OFF':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x16]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/light/enocean/light_abc/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x50]
     if message.payload.decode('UTF-8')=='ON':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x50]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='OFF':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x50]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/cover/enocean/rollo_west_1/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x32] #Teached in sender ID for this shutter
     if message.payload.decode('UTF-8')=='OPEN':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x32])) #Teached in sender ID for this shutter
+      communicator.send(assemble_packet_press_a_0(sender)) 
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='CLOSE':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x32]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/cover/enocean/rollo_west_2/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x35]
     if message.payload.decode('UTF-8')=='OPEN':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x35]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='CLOSE':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x35]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/cover/enocean/rollo_south_1/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x30]
     if message.payload.decode('UTF-8')=='OPEN':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x30]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='CLOSE':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x30]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/cover/enocean/rollo_south_2/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x34]
     if message.payload.decode('UTF-8')=='OPEN':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x34]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='CLOSE':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x34]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   if message.topic=="homeassistant/cover/enocean/rollo_nord/set":
+    sender_id=[0xAA, 0xAA, 0xAA, 0x33]
     if message.payload.decode('UTF-8')=='OPEN':
-      communicator.send(assemble_packet_press_a_1([0xAA, 0xAA, 0xAA, 0x33]))
+      communicator.send(assemble_packet_press_a_1(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
     if message.payload.decode('UTF-8')=='CLOSE':
-      communicator.send(assemble_packet_press_a_0([0xAA, 0xAA, 0xAA, 0x33]))
+      communicator.send(assemble_packet_press_a_0(sender_id))
       time.sleep(0.1)
-      communicator.send(assemble_packet_release())
+      communicator.send(assemble_packet_release(sender_id))
   
 mqtt.Client.connected_flag=False
 mqtt.Client.disconnected_flag=True
